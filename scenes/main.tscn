@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://dux8tu8l76ihm"]
+
+[ext_resource type="PackedScene" uid="uid://12345" path="res://scenes/game.tscn" id="1_qm2hf"]
+[ext_resource type="PackedScene" uid="uid://vfn4goq0rbr7" path="res://scenes/low_poly_person.tscn" id="2_xwqad"]
+[ext_resource type="AudioStream" uid="uid://ftn8uc82ab08" path="res://sounds/rain-on-roof-or-window-nature-sounds-8312.mp3" id="3_wmmem"]
+[ext_resource type="AudioStream" uid="uid://c2jpqdogadah5" path="res://sounds/thunderstorm-14708.mp3" id="4_7dvv2"]
+[ext_resource type="AudioStream" uid="uid://cdngi5n2iiflp" path="res://sounds/thriller-ambient-14563.mp3" id="5_dd5kf"]
+
+[sub_resource type="Environment" id="Environment_jugsg"]
+background_mode = 1
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="game" parent="." instance=ExtResource("1_qm2hf")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
+light_color = Color(1, 0.858824, 0.839216, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 10.0
+omni_attenuation = 1.5
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78765, 1.67698, -1.65958)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_attenuation = 1.5
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95919, 1.67698, -1.65958)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_attenuation = 1.5
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89691, 1.48797, 0.857244)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0299, 1.48797, 0.857244)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52636, 2.59493, 2.09764)
+light_color = Color(1, 0.654902, 0.482353, 1)
+light_size = 0.25
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jugsg")
+
+[node name="LowPolyPerson" parent="." instance=ExtResource("2_xwqad")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6294, 0, -3.66788e-08)
+
+[node name="SoundRain" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13425, 15.3244, 0)
+stream = ExtResource("3_wmmem")
+unit_size = 0.5
+autoplay = true
+
+[node name="SoundThunder" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13425, 15.3244, 0)
+stream = ExtResource("4_7dvv2")
+unit_size = 1.0
+autoplay = true
+
+[node name="SoundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dd5kf")
+volume_db = -10.0
+autoplay = true
