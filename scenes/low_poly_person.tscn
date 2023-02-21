@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://vfn4goq0rbr7"]
+[gd_scene load_steps=11 format=3 uid="uid://bmniamn7rrv07"]
 
-[ext_resource type="Script" path="res://scripts/CharacterBody3D.gd" id="1_5qp7m"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3iw68"]
 [ext_resource type="AudioStream" uid="uid://cr48ruar813d8" path="res://sounds/indoor-footsteps-6385.mp3" id="2_qjrsc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1klyy"]
@@ -1334,7 +1334,7 @@ radius = 0.211216
 height = 1.7949
 
 [node name="LowPolyPerson" type="CharacterBody3D"]
-script = ExtResource("1_5qp7m")
+script = ExtResource("1_3iw68")
 speed = 3.0
 camera_sens = 15.0
 
