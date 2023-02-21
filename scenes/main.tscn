@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dux8tu8l76ihm"]
+[gd_scene load_steps=9 format=3 uid="uid://dux8tu8l76ihm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oad0o"]
 [ext_resource type="PackedScene" uid="uid://12345" path="res://scenes/game.tscn" id="1_qm2hf"]
@@ -6,8 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ftn8uc82ab08" path="res://sounds/rain-on-roof-or-window-nature-sounds-8312.mp3" id="3_wmmem"]
 [ext_resource type="AudioStream" uid="uid://c2jpqdogadah5" path="res://sounds/thunderstorm-14708.mp3" id="4_7dvv2"]
 [ext_resource type="AudioStream" uid="uid://cdngi5n2iiflp" path="res://sounds/thriller-ambient-14563.mp3" id="5_dd5kf"]
-[ext_resource type="PackedScene" path="res://scenes/hand_left.tscn" id="7_lhxuk"]
-[ext_resource type="PackedScene" path="res://scenes/hand_right.tscn" id="8_04iww"]
+[ext_resource type="PackedScene" uid="uid://brmcn45gdp2q3" path="res://scenes/xr_player.tscn" id="7_v7onp"]
 
 [sub_resource type="Environment" id="Environment_jugsg"]
 background_mode = 1
@@ -92,18 +91,4 @@ stream = ExtResource("5_dd5kf")
 volume_db = -10.0
 autoplay = true
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-
-[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-pose = &"aim"
-
-[node name="HandLeft" parent="XROrigin3D/LeftHand" instance=ExtResource("7_lhxuk")]
-
-[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
-tracker = &"right_hand"
-pose = &"aim"
-
-[node name="HandRight" parent="XROrigin3D/RightHand" instance=ExtResource("8_04iww")]
+[node name="XRPlayer" parent="." instance=ExtResource("7_v7onp")]

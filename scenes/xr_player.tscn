@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://brmcn45gdp2q3"]
+
+[ext_resource type="Script" path="res://scripts/xr_player.gd" id="1_16sqi"]
+[ext_resource type="PackedScene" path="res://scenes/hand_left.tscn" id="2_blm4f"]
+[ext_resource type="PackedScene" path="res://scenes/hand_right.tscn" id="3_3e3cr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2j2so"]
+radius = 0.15
+height = 1.0
+
+[node name="XRPlayer" type="CharacterBody3D"]
+script = ExtResource("1_16sqi")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00589562, 0.00842452, -0.0302079)
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="HandLeft" parent="XROrigin3D/LeftHand" instance=ExtResource("2_blm4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="HandRight" parent="XROrigin3D/RightHand" instance=ExtResource("3_3e3cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_2j2so")
