@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bab1jvpsqfiaa"]
+
+[ext_resource type="PackedScene" uid="uid://kkcmfnncvumw" path="res://models/knives.glb" id="1_g2a0k"]
+
+[node name="knives" instance=ExtResource("1_g2a0k")]
+
+[node name="Knives" parent="." index="0"]
+transform = Transform3D(-1.07999e-07, 0, 1.04343, 0, 0.905963, 0, -0.905963, 0, -1.24387e-07, 0, 0, 0)

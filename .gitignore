@@ -13,3 +13,8 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Imported textures from game model
+# When loading the project, these get auto imported and shouldn't be tracked by git
+models/*.png
+models/*.png.import

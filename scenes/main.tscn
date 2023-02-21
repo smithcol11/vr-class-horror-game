@@ -19,7 +19,7 @@ script = ExtResource("1_oad0o")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
-light_color = Color(1, 0.858824, 0.839216, 1)
+light_color = Color(1, 0.784314, 0.752941, 1)
 light_energy = 0.5
 shadow_enabled = true
 shadow_opacity = 0.5
@@ -73,6 +73,7 @@ environment = SubResource("Environment_jugsg")
 
 [node name="LowPolyPerson" parent="." instance=ExtResource("2_xwqad")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6294, 0, -3.66788e-08)
+visible = false
 
 [node name="SoundRain" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13425, 15.3244, 0)

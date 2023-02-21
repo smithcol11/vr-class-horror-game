@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+
 [debug]
 
 settings/stdout/print_fps=true
@@ -24,6 +28,19 @@ settings/stdout/print_fps=true
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+
+[importer_defaults]
+
+animation_library={
+"gltf/embedded_image_handling": 3
+}
+scene={
+"gltf/embedded_image_handling": 3
+}
 
 [input]
 

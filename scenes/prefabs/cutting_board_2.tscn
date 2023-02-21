@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgwwtlqtnw640"]
+
+[ext_resource type="PackedScene" uid="uid://dq8e5k5afvr0b" path="res://models/cutting_board_2.glb" id="1_34nqu"]
+
+[node name="cutting_board_2" instance=ExtResource("1_34nqu")]
+
+[node name="CuttingBoard2" parent="." index="0"]
+transform = Transform3D(-4.84267e-10, 0, 0.0125639, 0, 0.0110787, 0, -0.0110787, 0, -5.49186e-10, 0, 0, 0)
