@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmg4kyieck12l"]
-
-[ext_resource type="PackedScene" uid="uid://b4dvms81sldsm" path="res://models/pepper.glb" id="1_gm4et"]
-
-[node name="pepper" instance=ExtResource("1_gm4et")]
-
-[node name="ShakerPepper" parent="." index="0"]
-transform = Transform3D(0.287738, 0, 0.957709, 0, 1, 0, -0.957709, 0, 0.287738, 0, 0, 0)

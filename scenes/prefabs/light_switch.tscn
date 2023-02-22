@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cveh8g4xi8k44"]
+
+[ext_resource type="PackedScene" uid="uid://copi61ulu7dkp" path="res://models/light_switch.glb" id="1_oujj0"]
+
+[node name="light_switch" instance=ExtResource("1_oujj0")]
+
+[node name="Switch" parent="." index="0"]
+transform = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0)
+lod_bias = 20.0

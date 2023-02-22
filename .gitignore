@@ -16,5 +16,6 @@ mono_crash.*.json
 
 # Imported textures from game model
 # When loading the project, these get auto imported and shouldn't be tracked by git
+# Should be fixed from recent commit, keeping just in case
 models/*.png
 models/*.png.import

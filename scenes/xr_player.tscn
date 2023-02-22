@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://brmcn45gdp2q3"]
+[gd_scene load_steps=9 format=3 uid="uid://brmcn45gdp2q3"]
 
 [ext_resource type="Script" path="res://scripts/xr_player.gd" id="1_16sqi"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_18aij"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4_3mo3l"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_6rus1"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="5_trgs5"]
 [ext_resource type="AudioStream" uid="uid://cr48ruar813d8" path="res://sounds/indoor-footsteps-6385.mp3" id="6_r017u"]
@@ -27,6 +28,9 @@ order = 2
 max_speed = 2.0
 strafe = true
 
+[node name="FunctionPickup" parent="XROrigin3D/LeftHand" instance=ExtResource("4_3mo3l")]
+grab_distance = 0.1
+
 [node name="RightHand" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 pose = &"aim"
@@ -34,6 +38,9 @@ pose = &"aim"
 [node name="RightHand" parent="XROrigin3D/RightHand" instance=ExtResource("5_trgs5")]
 
 [node name="MovementTurn" parent="XROrigin3D/RightHand" instance=ExtResource("7_6ip1l")]
+
+[node name="FunctionPickup" parent="XROrigin3D/RightHand" instance=ExtResource("4_3mo3l")]
+grab_distance = 0.1
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_6xpyw")]
 player_radius = 0.2

@@ -1,28 +1,53 @@
-[gd_scene load_steps=9 format=3 uid="uid://dux8tu8l76ihm"]
+[gd_scene load_steps=21 format=3 uid="uid://dux8tu8l76ihm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oad0o"]
-[ext_resource type="PackedScene" uid="uid://12345" path="res://scenes/game.tscn" id="1_qm2hf"]
+[ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="2_5a41n"]
 [ext_resource type="PackedScene" uid="uid://bmniamn7rrv07" path="res://scenes/low_poly_person.tscn" id="2_xwqad"]
 [ext_resource type="AudioStream" uid="uid://ftn8uc82ab08" path="res://sounds/rain-on-roof-or-window-nature-sounds-8312.mp3" id="3_wmmem"]
 [ext_resource type="AudioStream" uid="uid://c2jpqdogadah5" path="res://sounds/thunderstorm-14708.mp3" id="4_7dvv2"]
 [ext_resource type="AudioStream" uid="uid://cdngi5n2iiflp" path="res://sounds/thriller-ambient-14563.mp3" id="5_dd5kf"]
 [ext_resource type="PackedScene" uid="uid://brmcn45gdp2q3" path="res://scenes/xr_player.tscn" id="7_v7onp"]
+[ext_resource type="PackedScene" uid="uid://qdjebqlf5ipu" path="res://scenes/prefabs/bottle.tscn" id="8_wlq7x"]
+[ext_resource type="PackedScene" uid="uid://c7ppaea21ygnl" path="res://scenes/prefabs/chair.scn" id="9_4v1td"]
+[ext_resource type="PackedScene" uid="uid://oir2du58xs0m" path="res://scenes/prefabs/karaffe.tscn" id="11_1kx8n"]
+[ext_resource type="PackedScene" uid="uid://cqdqtu3b1vu3k" path="res://scenes/prefabs/flower_vase.scn" id="12_bf5ym"]
+[ext_resource type="PackedScene" uid="uid://dno5gv8wcryxj" path="res://scenes/prefabs/coffee_jar.tscn" id="14_nx7jp"]
+[ext_resource type="PackedScene" uid="uid://c2dr7ppybkp78" path="res://scenes/prefabs/kitchen_decor.scn" id="14_v2rhg"]
+[ext_resource type="PackedScene" uid="uid://kfm5ksw18sk1" path="res://scenes/prefabs/knives.scn" id="15_wrbj1"]
+[ext_resource type="PackedScene" uid="uid://e6q5belgjib4" path="res://scenes/prefabs/pepper.scn" id="16_wtiwt"]
+[ext_resource type="PackedScene" uid="uid://w2hi7j0cr742" path="res://scenes/prefabs/pillow.scn" id="17_264oy"]
+[ext_resource type="PackedScene" uid="uid://c5ckagpa27vpo" path="res://scenes/prefabs/plant_1.scn" id="18_mg4o5"]
+[ext_resource type="PackedScene" uid="uid://dt0c6i2opak1j" path="res://scenes/prefabs/cutting_board.tscn" id="19_2m8sd"]
+[ext_resource type="PackedScene" uid="uid://box42rrg7rvo6" path="res://scenes/prefabs/vinegar.scn" id="19_ux3uh"]
 
 [sub_resource type="Environment" id="Environment_jugsg"]
 background_mode = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
+fog_light_energy = 0.49
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
 
 [node name="Main" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_oad0o")
 
-[node name="Game" parent="." instance=ExtResource("1_qm2hf")]
+[node name="House" parent="." instance=ExtResource("2_5a41n")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
 light_color = Color(1, 0.784314, 0.752941, 1)
 light_energy = 0.75
 shadow_enabled = true
-shadow_opacity = 0.5
+shadow_opacity = 0.3
 shadow_blur = 10.0
 omni_range = 10.0
 omni_attenuation = 1.5
@@ -30,21 +55,23 @@ omni_attenuation = 1.5
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78765, 1.67698, -1.65958)
 light_color = Color(1, 0.835294, 0.756863, 1)
+light_energy = 0.5
 shadow_enabled = true
 shadow_opacity = 0.5
-shadow_blur = 10.0
-omni_attenuation = 1.5
+shadow_blur = 5.0
+omni_attenuation = 1.25
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95919, 1.67698, -1.65958)
 light_color = Color(1, 0.835294, 0.756863, 1)
+light_energy = 0.5
 shadow_enabled = true
 shadow_opacity = 0.5
-shadow_blur = 10.0
-omni_attenuation = 1.5
+shadow_blur = 5.0
+omni_attenuation = 1.25
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89691, 1.48797, 0.857244)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89691, 1.5131, 0.868085)
 light_color = Color(1, 0.835294, 0.756863, 1)
 shadow_enabled = true
 shadow_opacity = 0.5
@@ -65,7 +92,7 @@ light_color = Color(1, 0.654902, 0.482353, 1)
 light_size = 0.25
 shadow_enabled = true
 shadow_opacity = 0.5
-shadow_blur = 10.0
+shadow_blur = 5.0
 omni_range = 3.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -93,3 +120,50 @@ volume_db = -10.0
 autoplay = true
 
 [node name="XRPlayer" parent="." instance=ExtResource("7_v7onp")]
+
+[node name="Prefabs" type="Node3D" parent="."]
+
+[node name="bottle" parent="Prefabs" instance=ExtResource("8_wlq7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72292, 0.836082, -1.58804)
+
+[node name="chair" parent="Prefabs" instance=ExtResource("9_4v1td")]
+transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.83485, 0, -1.21284)
+
+[node name="chair2" parent="Prefabs" instance=ExtResource("9_4v1td")]
+transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.05759, 0, -1.19369)
+
+[node name="coffee_jar" parent="Prefabs" instance=ExtResource("14_nx7jp")]
+transform = Transform3D(0.979424, 0, -0.201813, 0, 1, 0, 0.201813, 0, 0.979424, 4.87344, 0.879443, -1.37743)
+
+[node name="sugar_jar" parent="Prefabs" instance=ExtResource("14_nx7jp")]
+transform = Transform3D(0.93874, 0, 0.344627, 0, 1, 0, -0.344627, 0, 0.93874, 4.90863, 0.879443, -1.18596)
+
+[node name="cutting_board" parent="Prefabs" instance=ExtResource("19_2m8sd")]
+transform = Transform3D(0.327746, 0, -0.944766, 0, 1, 0, 0.944766, 0, 0.327746, 1.90886, 0.799968, -3.50522)
+
+[node name="flower_vase" parent="Prefabs" instance=ExtResource("12_bf5ym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41066, 0.798839, -1.46554)
+
+[node name="karaffe" parent="Prefabs" instance=ExtResource("11_1kx8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12935, 0.405355, 2.45927)
+
+[node name="kitchen_decor" parent="Prefabs" instance=ExtResource("14_v2rhg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37258, 0.789365, -3.64207)
+
+[node name="knives" parent="Prefabs" instance=ExtResource("15_wrbj1")]
+transform = Transform3D(-0.179918, 0, -0.983682, 0, 1, 0, 0.983682, 0, -0.179918, 2.95529, 0.785274, -1.84351)
+
+[node name="pepper" parent="Prefabs" instance=ExtResource("16_wtiwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83534, 0.802091, -3.05664)
+
+[node name="salt" parent="Prefabs" instance=ExtResource("16_wtiwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74082, 0.802091, -2.96835)
+
+[node name="pillow" parent="Prefabs" instance=ExtResource("17_264oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90046, 0.668591, 2.16469)
+
+[node name="plant1" parent="Prefabs" instance=ExtResource("18_mg4o5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67006, 0.775671, 4.09126)
+
+[node name="vinegar" parent="Prefabs" instance=ExtResource("19_ux3uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89774, 0.797307, -2.92514)

@@ -105,6 +105,18 @@ interact={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Static World"
+3d_physics/layer_2="Dynamic World"
+3d_physics/layer_3="Pickable Objects"
+3d_physics/layer_4="Wall Walking Surfaces"
+3d_physics/layer_17="Held Objects"
+3d_physics/layer_18="Player Hand"
+3d_physics/layer_20="Player Body"
+3d_physics/layer_21="Pointable"
+3d_physics/layer_22="Hand Pose Area"
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=1
