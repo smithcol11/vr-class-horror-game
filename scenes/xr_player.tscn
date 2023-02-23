@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brmcn45gdp2q3"]
+[gd_scene load_steps=10 format=3 uid="uid://brmcn45gdp2q3"]
 
 [ext_resource type="Script" path="res://scripts/xr_player.gd" id="1_16sqi"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_18aij"]
@@ -8,6 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://cr48ruar813d8" path="res://sounds/indoor-footsteps-6385.mp3" id="6_r017u"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_6ip1l"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_6xpyw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6nmnn"]
+size = Vector3(0.0374848, 0.0957351, 0.154978)
 
 [node name="XRPlayer" type="Node3D"]
 script = ExtResource("1_16sqi")
@@ -31,6 +34,14 @@ strafe = true
 [node name="FunctionPickup" parent="XROrigin3D/LeftHand" instance=ExtResource("4_3mo3l")]
 grab_distance = 0.1
 
+[node name="CharacterBody3D" type="CharacterBody3D" parent="XROrigin3D/LeftHand"]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftHand/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227591, -0.0401131, 0.087509)
+shape = SubResource("BoxShape3D_6nmnn")
+
 [node name="RightHand" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 pose = &"aim"
@@ -42,9 +53,23 @@ pose = &"aim"
 [node name="FunctionPickup" parent="XROrigin3D/RightHand" instance=ExtResource("4_3mo3l")]
 grab_distance = 0.1
 
+[node name="CharacterBody3D" type="CharacterBody3D" parent="XROrigin3D/RightHand"]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightHand/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0287161, -0.0491751, 0.0901082)
+shape = SubResource("BoxShape3D_6nmnn")
+
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_6xpyw")]
 player_radius = 0.2
+collision_mask = 1017
 
 [node name="SoundFootsteps" type="AudioStreamPlayer3D" parent="XROrigin3D/PlayerBody"]
 stream = ExtResource("6_r017u")
 volume_db = 80.0
+
+[connection signal="button_pressed" from="XROrigin3D/LeftHand" to="." method="_on_left_hand_button_pressed"]
+[connection signal="button_released" from="XROrigin3D/LeftHand" to="." method="_on_left_hand_button_released"]
+[connection signal="button_pressed" from="XROrigin3D/RightHand" to="." method="_on_right_hand_button_pressed"]
+[connection signal="button_released" from="XROrigin3D/RightHand" to="." method="_on_right_hand_button_released"]

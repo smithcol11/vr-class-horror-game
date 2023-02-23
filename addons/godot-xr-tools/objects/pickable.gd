@@ -125,6 +125,7 @@ var _active_grab_point : XRToolsGrabPoint
 @onready var original_parent = get_parent()
 @onready var original_collision_mask : int = collision_mask
 @onready var original_collision_layer : int = collision_layer
+@onready var drop = $Drop
 
 
 # Add support for is_xr_class on XRTools classes
@@ -134,7 +135,14 @@ func is_xr_class(name : String) -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if drop:
+		drop.volume_db = -20
+		drop.unit_size = .5
+		drop.max_db = -10
+	contact_monitor = true
+	max_contacts_reported = 1
 	# Get all grab points
+	connect("body_entered", _on_body_entered)
 	for child in get_children():
 		var grab_point := child as XRToolsGrabPoint
 		if grab_point:
@@ -397,3 +405,6 @@ func _get_grab_point(_grabber : Node) -> XRToolsGrabPoint:
 func _set_ranged_grab_method(new_value: int) -> void:
 	ranged_grab_method = new_value
 	can_ranged_grab = new_value != RangedMethod.NONE
+
+func _on_body_entered(body):
+	if body is StaticBody3D and drop: drop.play()

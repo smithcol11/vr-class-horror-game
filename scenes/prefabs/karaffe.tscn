@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://oir2du58xs0m"]
+[gd_scene load_steps=18 format=3 uid="uid://oir2du58xs0m"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_iffjx"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_u7y37"]
@@ -8,6 +8,7 @@
 [ext_resource type="Animation" uid="uid://rs7vpclot07o" path="res://addons/godot-xr-tools/hands/animations/right/Grip 3.res" id="6_nw4nk"]
 [ext_resource type="Material" uid="uid://r5klq6r5b1vq" path="res://materials/outline.tres" id="7_xbcea"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.gd" id="8_jbk0j"]
+[ext_resource type="AudioStream" uid="uid://lqgmqhtp0gfo" path="res://sounds/drop.mp3" id="9_nrcw1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfwj2"]
 resource_name = "blackFreckles"
@@ -77,6 +78,8 @@ _surfaces = [{
 }]
 
 [node name="karaffe" type="RigidBody3D"]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_iffjx")
 
 [node name="Karaffe" type="MeshInstance3D" parent="."]
@@ -102,3 +105,7 @@ transform = Transform3D(-0.586179, 0, -0.810181, 0, 1, 0, 0.810181, 0, -0.586179
 mesh = SubResource("ArrayMesh_ryn5m")
 skeleton = NodePath("../Karaffe")
 script = ExtResource("8_jbk0j")
+
+[node name="Drop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_nrcw1")
+max_db = -5.0

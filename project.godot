@@ -39,7 +39,7 @@ animation_library={
 "gltf/embedded_image_handling": 3
 }
 scene={
-"gltf/embedded_image_handling": 3
+"gltf/embedded_image_handling": 2
 }
 
 [input]

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oad0o"]
 [ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="2_5a41n"]
-[ext_resource type="PackedScene" uid="uid://bmniamn7rrv07" path="res://scenes/low_poly_person.tscn" id="2_xwqad"]
 [ext_resource type="AudioStream" uid="uid://ftn8uc82ab08" path="res://sounds/rain-on-roof-or-window-nature-sounds-8312.mp3" id="3_wmmem"]
 [ext_resource type="AudioStream" uid="uid://c2jpqdogadah5" path="res://sounds/thunderstorm-14708.mp3" id="4_7dvv2"]
 [ext_resource type="AudioStream" uid="uid://cdngi5n2iiflp" path="res://sounds/thriller-ambient-14563.mp3" id="5_dd5kf"]
@@ -17,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://e6q5belgjib4" path="res://scenes/prefabs/pepper.scn" id="16_wtiwt"]
 [ext_resource type="PackedScene" uid="uid://w2hi7j0cr742" path="res://scenes/prefabs/pillow.scn" id="17_264oy"]
 [ext_resource type="PackedScene" uid="uid://c5ckagpa27vpo" path="res://scenes/prefabs/plant_1.scn" id="18_mg4o5"]
+[ext_resource type="PackedScene" uid="uid://dtdrsc7avr8r0" path="res://scenes/prefabs/door.scn" id="19_1gv1a"]
 [ext_resource type="PackedScene" uid="uid://dt0c6i2opak1j" path="res://scenes/prefabs/cutting_board.tscn" id="19_2m8sd"]
 [ext_resource type="PackedScene" uid="uid://box42rrg7rvo6" path="res://scenes/prefabs/vinegar.scn" id="19_ux3uh"]
 
@@ -45,7 +45,6 @@ script = ExtResource("1_oad0o")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
 light_color = Color(1, 0.784314, 0.752941, 1)
-light_energy = 0.75
 shadow_enabled = true
 shadow_opacity = 0.3
 shadow_blur = 10.0
@@ -98,10 +97,6 @@ omni_range = 3.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jugsg")
 
-[node name="LowPolyPerson" parent="." instance=ExtResource("2_xwqad")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6294, 0, -3.66788e-08)
-visible = false
-
 [node name="SoundRain" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13425, 15.3244, 0)
 stream = ExtResource("3_wmmem")
@@ -124,7 +119,14 @@ autoplay = true
 [node name="Prefabs" type="Node3D" parent="."]
 
 [node name="bottle" parent="Prefabs" instance=ExtResource("8_wlq7x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72292, 0.836082, -1.58804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76791, 0.836082, -1.61606)
+freeze_mode = 0
+
+[node name="bottle2" parent="Prefabs" instance=ExtResource("8_wlq7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83989, 0.82934, -1.71703)
+
+[node name="bottle3" parent="Prefabs" instance=ExtResource("8_wlq7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72319, 0.82934, -1.86317)
 
 [node name="chair" parent="Prefabs" instance=ExtResource("9_4v1td")]
 transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.83485, 0, -1.21284)
@@ -134,12 +136,15 @@ transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909
 
 [node name="coffee_jar" parent="Prefabs" instance=ExtResource("14_nx7jp")]
 transform = Transform3D(0.979424, 0, -0.201813, 0, 1, 0, 0.201813, 0, 0.979424, 4.87344, 0.879443, -1.37743)
+freeze_mode = 0
 
 [node name="sugar_jar" parent="Prefabs" instance=ExtResource("14_nx7jp")]
 transform = Transform3D(0.93874, 0, 0.344627, 0, 1, 0, -0.344627, 0, 0.93874, 4.90863, 0.879443, -1.18596)
+freeze_mode = 0
 
 [node name="cutting_board" parent="Prefabs" instance=ExtResource("19_2m8sd")]
 transform = Transform3D(0.327746, 0, -0.944766, 0, 1, 0, 0.944766, 0, 0.327746, 1.90886, 0.799968, -3.50522)
+freeze_mode = 0
 
 [node name="flower_vase" parent="Prefabs" instance=ExtResource("12_bf5ym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41066, 0.798839, -1.46554)
@@ -155,15 +160,26 @@ transform = Transform3D(-0.179918, 0, -0.983682, 0, 1, 0, 0.983682, 0, -0.179918
 
 [node name="pepper" parent="Prefabs" instance=ExtResource("16_wtiwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83534, 0.802091, -3.05664)
+freeze_mode = 0
 
 [node name="salt" parent="Prefabs" instance=ExtResource("16_wtiwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74082, 0.802091, -2.96835)
+freeze_mode = 0
 
 [node name="pillow" parent="Prefabs" instance=ExtResource("17_264oy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90046, 0.668591, 2.16469)
+freeze_mode = 0
 
 [node name="plant1" parent="Prefabs" instance=ExtResource("18_mg4o5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67006, 0.775671, 4.09126)
+freeze_mode = 0
 
 [node name="vinegar" parent="Prefabs" instance=ExtResource("19_ux3uh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89774, 0.797307, -2.92514)
+freeze_mode = 0
+
+[node name="door" parent="." instance=ExtResource("19_1gv1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.50768, 0, 1.17868)
+
+[connection signal="grabbed" from="XRPlayer" to="door" method="_on_xr_player_grabbed"]
+[connection signal="released" from="XRPlayer" to="door" method="_on_xr_player_released"]
