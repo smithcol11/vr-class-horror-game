@@ -137,8 +137,8 @@ func is_xr_class(name : String) -> bool:
 func _ready():
 	if drop:
 		drop.volume_db = -20
-		drop.unit_size = .5
-		drop.max_db = -10
+		drop.unit_size = 5
+		drop.max_db = -15
 	contact_monitor = true
 	max_contacts_reported = 1
 	# Get all grab points

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+Singleton="*res://scripts/singleton.gd"
 
 [debug]
 

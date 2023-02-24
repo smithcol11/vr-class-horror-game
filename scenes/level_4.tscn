@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dworr65dkm4yy"]
+
+[ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="1_pftdc"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_pyvic"]
+[ext_resource type="PackedScene" uid="uid://dtdrsc7avr8r0" path="res://scenes/prefabs/door.scn" id="2_78co6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ix5h"]
+size = Vector3(0.408718, 2.58247, 1.28689)
+
+[node name="Level4" type="Node3D"]
+script = ExtResource("1_pyvic")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8795, 0, 0)
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346042, 1.40089, 0)
+shape = SubResource("BoxShape3D_3ix5h")
+
+[node name="House" parent="." instance=ExtResource("1_pftdc")]
+
+[node name="door" parent="." instance=ExtResource("2_78co6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.51396, 0, 1.17482)
+
+[node name="TransportDoor" parent="." instance=ExtResource("2_78co6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.17595, 0, 0.0131148)
+
+[node name="HiddenDoor" parent="." instance=ExtResource("2_78co6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.998, 0, 0.0131148)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3883, 0)
+shadow_enabled = true
+shadow_opacity = 0.3
+shadow_blur = 10.0
+omni_range = 13.0
