@@ -106,7 +106,7 @@ var by_hand : XRToolsHand = null
 var _closest_count: int = 0
 
 # Current state
-var _state = PickableState.IDLE
+@export var _state = PickableState.IDLE
 
 # Remote transform
 var _remote_transform: RemoteTransform3D = null

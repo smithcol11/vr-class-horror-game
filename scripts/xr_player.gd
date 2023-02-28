@@ -8,16 +8,14 @@ extends Node3D
 
 @onready var singleton = get_node("/root/Singleton")
 
-signal grabbed
-signal released
-
 func _ready():
 	singleton.left_hand = left_controller
 	singleton.right_hand = right_controller
-	pass
+	
+	left_controller.connect("input_vector2_changed", on_input_vector2_changed)
 
-func _physics_process(delta):
-	if left_controller.is_button_pressed("primary") and !footsteps.playing:
-		footsteps.play()
-	elif !left_controller.is_button_pressed("primary") and footsteps.playing:
+func on_input_vector2_changed(vector_name, vector_value):
+	if vector_name == "primary" and vector_value == Vector2.ZERO: 
 		footsteps.stop()
+	elif vector_name == "primary" and vector_value != Vector2.ZERO and !footsteps.playing: 
+		footsteps.play()

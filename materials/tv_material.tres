@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ciknov8dhsqpg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6dmic"]
+viewport_path = NodePath("SubViewport")
+
+[resource]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_6dmic")
+albedo_texture_force_srgb = true

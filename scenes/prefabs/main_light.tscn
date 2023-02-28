@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2553a1ndklwf"]
+
+[ext_resource type="PackedScene" uid="uid://bcbyflvyqu4lb" path="res://models/main_light.glb" id="1_hxly7"]
+[ext_resource type="AudioStream" uid="uid://b0t82hcp1as7s" path="res://sounds/squeak_01-6193.mp3" id="2_jxl30"]
+[ext_resource type="Script" path="res://scripts/main_light.gd" id="2_qwgmq"]
+
+[sub_resource type="Animation" id="Animation_hq2c0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LEDExtenderLight:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LEDExtenderLight:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LEDExtenderLight:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qq572"]
+resource_name = "swing"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LEDExtenderLight:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.0872665, -0.25, 0, 0.25, 0, -0.0872665, -0.25, 0, 0.25, 0, 0.0872665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LEDExtenderLight:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LEDExtenderLight:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmt25"]
+_data = {
+"RESET": SubResource("Animation_hq2c0"),
+"swing": SubResource("Animation_qq572")
+}
+
+[node name="main_light" instance=ExtResource("1_hxly7")]
+script = ExtResource("2_qwgmq")
+
+[node name="LEDExtenderLight" parent="." index="0"]
+transform = Transform3D(0.379162, 0, 0, 0, 0.379162, 0, 0, 0, 0.379162, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_gmt25")
+}
+
+[node name="SqueakSound" type="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("2_jxl30")
+volume_db = 5.0
+unit_size = 2.0
+max_db = 5.0
+max_distance = 15.0

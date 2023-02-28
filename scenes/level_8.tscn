@@ -1,0 +1,168 @@
+[gd_scene load_steps=13 format=3 uid="uid://itv8sft2hf3l"]
+
+[ext_resource type="Script" path="res://scripts/level_8.gd" id="1_ueaub"]
+[ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="2_x6iym"]
+[ext_resource type="PackedScene" uid="uid://dtdrsc7avr8r0" path="res://scenes/prefabs/door.scn" id="3_8knxh"]
+[ext_resource type="AudioStream" uid="uid://770avmmoy4ma" path="res://sounds/tv-static-7019.mp3" id="4_hidyp"]
+[ext_resource type="Script" path="res://scripts/tv.gd" id="5_gj5wf"]
+[ext_resource type="VideoStream" path="res://sounds/static1.ogv" id="6_pd260"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ix5h"]
+size = Vector3(0.408718, 2.58247, 1.28689)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lqtpt"]
+resource_local_to_scene = true
+size = Vector2(0.8, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yqg55"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01vlr"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_yqg55")
+albedo_texture_force_srgb = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6g2k"]
+emission_enabled = true
+emission = Color(0, 0.564706, 0.901961, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r78el"]
+material = SubResource("StandardMaterial3D_x6g2k")
+size = Vector2(0.32, 0.57)
+
+[node name="Level8" type="Node3D"]
+script = ExtResource("1_ueaub")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8795, 0, 0)
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346042, 1.40089, 0)
+shape = SubResource("BoxShape3D_3ix5h")
+
+[node name="House" parent="." instance=ExtResource("2_x6iym")]
+
+[node name="BathroomDoor" parent="." instance=ExtResource("3_8knxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.51396, 0, 1.17482)
+
+[node name="TransportDoor" parent="." instance=ExtResource("3_8knxh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.17595, 0, 0.0131148)
+
+[node name="HiddenDoor" parent="." instance=ExtResource("3_8knxh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.998, 0, 0.0131148)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Main" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
+light_color = Color(1, 0.784314, 0.752941, 1)
+shadow_enabled = true
+shadow_opacity = 0.3
+shadow_blur = 10.0
+omni_range = 10.0
+omni_attenuation = 1.5
+
+[node name="Kitchen1" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78765, 1.67698, -1.65958)
+light_color = Color(1, 0.835294, 0.756863, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+omni_attenuation = 1.25
+
+[node name="Kitchen2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95919, 1.67698, -1.65958)
+light_color = Color(1, 0.835294, 0.756863, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+omni_attenuation = 1.25
+
+[node name="Hall1" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89691, 1.5131, 0.868085)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+
+[node name="Hall2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0299, 1.48797, 0.857244)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+
+[node name="Bathroom" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52636, 2.59493, 2.09764)
+light_color = Color(1, 0.654902, 0.482353, 1)
+light_size = 0.25
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+omni_range = 3.0
+
+[node name="TVScreen" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(0.192316, 0, 0.981333, 0, 1, 0, -0.981333, 0, 0.192316, 4.83553, 1.35054, 3.97466)
+light_energy = 0.2
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+spot_range = 10.0
+spot_angle = 75.0
+
+[node name="ComputerScreen" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(-4.36605e-08, -0.211905, -0.97729, 2.10938e-09, 0.97729, -0.211905, 1, -1.13133e-08, -4.2222e-08, -2.71614, 1.12386, 2.95777)
+light_energy = 0.2
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+spot_angle = 80.0
+
+[node name="Patio" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.345396, 0.938457, 0, -0.938457, -0.345396, 0.142587, 2.86151, 5.2587)
+light_energy = 5.0
+shadow_enabled = true
+spot_angle = 30.0
+
+[node name="TV" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.3708e-08, -0.999923, -0.0123741, 1, -4.37114e-08, -5.55069e-17, -5.40888e-10, -0.0123741, 0.999923, 4.86062, 1.32794, 3.94816)
+mesh = SubResource("PlaneMesh_lqtpt")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_01vlr")
+
+[node name="TVAudio" type="AudioStreamPlayer3D" parent="TV"]
+transform = Transform3D(-4.3708e-08, 1, -5.40888e-10, -0.999924, -4.37114e-08, -0.0123741, -0.0123741, 3.33332e-20, 0.999923, 0, 0, 0)
+stream = ExtResource("4_hidyp")
+volume_db = 5.0
+unit_size = 1.0
+max_db = 0.0
+autoplay = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+script = ExtResource("5_gj5wf")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stream = ExtResource("6_pd260")
+autoplay = true
+
+[node name="Computer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.21644, 0.976296, 0, -0.976296, 0.21644, 0, 0, 0, 1, -2.73564, 1.10408, 2.94387)
+mesh = SubResource("PlaneMesh_r78el")
+
+[connection signal="finished" from="SubViewport/VideoStreamPlayer" to="SubViewport" method="_on_video_stream_player_finished"]

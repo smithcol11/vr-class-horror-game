@@ -32,11 +32,11 @@ environment = SubResource("Environment_jugsg")
 
 [node name="SoundRain" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wmmem")
-volume_db = -20.0
-autoplay = true
+volume_db = -30.0
 
 [node name="SoundThunder" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7dvv2")
+volume_db = -10.0
 autoplay = true
 
 [node name="SoundMusic" type="AudioStreamPlayer" parent="."]
@@ -45,6 +45,7 @@ volume_db = -5.0
 autoplay = true
 
 [node name="XRPlayer" parent="." instance=ExtResource("7_v7onp")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.4712, 0, -5.01422e-07)
 
 [node name="Level1" parent="." instance=ExtResource("6_msa11")]
 

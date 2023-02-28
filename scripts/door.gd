@@ -39,6 +39,9 @@ func door_state():
 func play_closed_sound():
 	$DoorClosed.play()
 
+func play_locked_sound():
+	$DoorLocked.play()
+
 func _on_area_3d_body_entered(body):
 	if body is CharacterBody3D: in_range = true
 
