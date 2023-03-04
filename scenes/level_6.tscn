@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cb5cqmvtdgd6u"]
+[gd_scene load_steps=18 format=3 uid="uid://cb5cqmvtdgd6u"]
 
 [ext_resource type="Script" path="res://scripts/level_6.gd" id="1_lei4w"]
 [ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="2_qo0hr"]
@@ -7,6 +7,25 @@
 [ext_resource type="Script" path="res://scripts/tv.gd" id="5_nmhjg"]
 [ext_resource type="VideoStream" path="res://sounds/static1.ogv" id="6_b2f5m"]
 [ext_resource type="PackedScene" uid="uid://bph8h1cfm7l2v" path="res://scenes/figure.tscn" id="7_g4rpq"]
+[ext_resource type="AudioStream" uid="uid://wcmiwtcpjffw" path="res://sounds/horror-sfx-3-103708.mp3" id="8_cnrgt"]
+[ext_resource type="AudioStream" uid="uid://dckm3hnosnvfo" path="res://sounds/window_knocking_door_interior-perspective_exterior_bang_aggressive-32615.mp3" id="9_wrb4w"]
+[ext_resource type="PackedScene" uid="uid://c7ppaea21ygnl" path="res://scenes/prefabs/chair.scn" id="10_cqfhd"]
+
+[sub_resource type="Environment" id="Environment_eeeev"]
+background_mode = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
+fog_light_energy = 0.49
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ix5h"]
 size = Vector3(0.408718, 2.58247, 1.28689)
@@ -33,24 +52,11 @@ emission_energy_multiplier = 1.5
 material = SubResource("StandardMaterial3D_x6g2k")
 size = Vector2(0.32, 0.57)
 
-[sub_resource type="Environment" id="Environment_eeeev"]
-background_mode = 1
-tonemap_mode = 2
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
-glow_enabled = true
-glow_normalized = true
-glow_blend_mode = 1
-fog_light_energy = 0.49
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.01
-adjustment_enabled = true
-adjustment_contrast = 1.1
-adjustment_saturation = 1.2
-
 [node name="Level6" type="Node3D"]
 script = ExtResource("1_lei4w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eeeev")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8795, 0, 0)
@@ -188,10 +194,28 @@ autoplay = true
 transform = Transform3D(0.21644, 0.976296, 0, -0.976296, 0.21644, 0, 0, 0, 1, -2.73564, 1.10408, 2.94387)
 mesh = SubResource("PlaneMesh_r78el")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_eeeev")
-
 [node name="figure" parent="." instance=ExtResource("7_g4rpq")]
 transform = Transform3D(-1.17278, 0, 0.254122, 0, 1.2, 0, -0.254122, 0, -1.17278, 0.165396, 0, 5.35679)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_cnrgt")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53169, 4.55633)
+stream = ExtResource("9_wrb4w")
+volume_db = 10.0
+unit_size = 1.0
+max_db = 0.0
+autoplay = true
+max_distance = 12.0
+
+[node name="Prefabs" type="Node3D" parent="."]
+
+[node name="chair" parent="Prefabs" instance=ExtResource("10_cqfhd")]
+transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.83485, 0, -1.21284)
+
+[node name="chair2" parent="Prefabs" instance=ExtResource("10_cqfhd")]
+transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.05759, 0, -1.19369)
+
 [connection signal="finished" from="SubViewport/VideoStreamPlayer" to="SubViewport" method="_on_video_stream_player_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

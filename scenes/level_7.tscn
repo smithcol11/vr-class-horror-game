@@ -1,14 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://co445u35qyy2u"]
+[gd_scene load_steps=22 format=3 uid="uid://co445u35qyy2u"]
 
 [ext_resource type="Script" path="res://scripts/level_7.gd" id="1_g25is"]
 [ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="2_8n1jo"]
 [ext_resource type="PackedScene" uid="uid://dtdrsc7avr8r0" path="res://scenes/prefabs/door.scn" id="3_tixrm"]
+[ext_resource type="Script" path="res://scripts/light_flicker.gd" id="4_m8gh4"]
 [ext_resource type="AudioStream" uid="uid://770avmmoy4ma" path="res://sounds/tv-static-7019.mp3" id="4_uhcfo"]
 [ext_resource type="Script" path="res://scripts/tv.gd" id="5_jkiqp"]
 [ext_resource type="VideoStream" path="res://sounds/static1.ogv" id="6_gf5jg"]
+[ext_resource type="PackedScene" uid="uid://bph8h1cfm7l2v" path="res://scenes/figure.tscn" id="7_chg67"]
+[ext_resource type="AudioStream" uid="uid://bnkptcocj1lwj" path="res://sounds/key-by-key-mechanical-keyboard-14389.mp3" id="8_13b7w"]
+[ext_resource type="AudioStream" uid="uid://wcmiwtcpjffw" path="res://sounds/horror-sfx-3-103708.mp3" id="10_v2jb0"]
+[ext_resource type="PackedScene" uid="uid://c7ppaea21ygnl" path="res://scenes/prefabs/chair.scn" id="11_lp1s8"]
+
+[sub_resource type="Environment" id="Environment_iwbo8"]
+background_mode = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
+fog_light_energy = 0.49
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ix5h"]
 size = Vector3(0.408718, 2.58247, 1.28689)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7j44q"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o538r"]
+noise = SubResource("FastNoiseLite_7j44q")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lqtpt"]
 resource_local_to_scene = true
@@ -32,8 +58,14 @@ emission_energy_multiplier = 1.5
 material = SubResource("StandardMaterial3D_x6g2k")
 size = Vector2(0.32, 0.57)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_loiam"]
+size = Vector3(0.0743161, 2.95383, 7.62973)
+
 [node name="Level7" type="Node3D"]
 script = ExtResource("1_g25is")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iwbo8")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8795, 0, 0)
@@ -59,6 +91,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.998
 
 [node name="Main" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
+visible = false
 light_color = Color(1, 0.784314, 0.752941, 1)
 shadow_enabled = true
 shadow_opacity = 0.3
@@ -74,9 +107,13 @@ shadow_enabled = true
 shadow_opacity = 0.5
 shadow_blur = 5.0
 omni_attenuation = 1.25
+script = ExtResource("4_m8gh4")
+texture = SubResource("NoiseTexture2D_o538r")
+flickering = true
 
 [node name="Kitchen2" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95919, 1.67698, -1.65958)
+visible = false
 light_color = Color(1, 0.835294, 0.756863, 1)
 light_energy = 0.5
 shadow_enabled = true
@@ -98,10 +135,11 @@ light_color = Color(1, 0.835294, 0.756863, 1)
 shadow_enabled = true
 shadow_opacity = 0.5
 shadow_blur = 10.0
-omni_range = 3.0
+omni_range = 2.5
 
 [node name="Bathroom" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52636, 2.59493, 2.09764)
+visible = false
 light_color = Color(1, 0.654902, 0.482353, 1)
 light_size = 0.25
 shadow_enabled = true
@@ -111,6 +149,7 @@ omni_range = 3.0
 
 [node name="TVScreen" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(0.192316, 0, 0.981333, 0, 1, 0, -0.981333, 0, 0.192316, 4.83553, 1.35054, 3.97466)
+visible = false
 light_energy = 0.2
 shadow_enabled = true
 shadow_opacity = 0.5
@@ -119,21 +158,24 @@ spot_range = 10.0
 spot_angle = 75.0
 
 [node name="ComputerScreen" type="SpotLight3D" parent="Lights"]
-transform = Transform3D(-4.36605e-08, -0.211905, -0.97729, 2.10938e-09, 0.97729, -0.211905, 1, -1.13133e-08, -4.2222e-08, -2.71614, 1.12386, 2.95777)
-light_energy = 0.2
+transform = Transform3D(-4.36605e-08, -0.211905, -0.97729, 2.10938e-09, 0.97729, -0.211905, 1, -1.13134e-08, -4.2222e-08, -2.71614, 1.12386, 2.95777)
+light_color = Color(0.772549, 0.882353, 1, 1)
+light_energy = 4.0
 shadow_enabled = true
 shadow_opacity = 0.5
 shadow_blur = 5.0
-spot_angle = 80.0
+spot_range = 2.0
 
 [node name="Patio" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, -0.345396, 0.938457, 0, -0.938457, -0.345396, 0.142587, 2.86151, 5.2587)
+visible = false
 light_energy = 5.0
 shadow_enabled = true
 spot_angle = 30.0
 
 [node name="TV" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.3708e-08, -0.999923, -0.0123741, 1, -4.37114e-08, -5.55069e-17, -5.40888e-10, -0.0123741, 0.999923, 4.86062, 1.32794, 3.94816)
+visible = false
 mesh = SubResource("PlaneMesh_lqtpt")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_01vlr")
@@ -144,7 +186,6 @@ stream = ExtResource("4_uhcfo")
 volume_db = 5.0
 unit_size = 1.0
 max_db = 0.0
-autoplay = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
@@ -165,4 +206,37 @@ autoplay = true
 transform = Transform3D(0.21644, 0.976296, 0, -0.976296, 0.21644, 0, 0, 0, 1, -2.73564, 1.10408, 2.94387)
 mesh = SubResource("PlaneMesh_r78el")
 
+[node name="figure" parent="." instance=ExtResource("7_chg67")]
+transform = Transform3D(-0.102178, 0, -1.29598, 0, 1.3, 0, 1.29598, 0, -0.102178, -2.15944, 0, 2.90972)
+
+[node name="KeyboardSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56573, 0.941923, 3)
+stream = ExtResource("8_13b7w")
+volume_db = 20.0
+unit_size = 1.0
+max_db = 6.0
+autoplay = true
+max_distance = 16.0
+
+[node name="FigureGoneArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.94568, 0, 0.393758)
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FigureGoneArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.313985, 1.50238, 0.262011)
+shape = SubResource("BoxShape3D_loiam")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_v2jb0")
+
+[node name="Prefabs" type="Node3D" parent="."]
+
+[node name="chair" parent="Prefabs" instance=ExtResource("11_lp1s8")]
+transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.83485, 0, -1.21284)
+
+[node name="chair2" parent="Prefabs" instance=ExtResource("11_lp1s8")]
+transform = Transform3D(0.0410909, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410909, 2.05759, 0, -1.19369)
+
 [connection signal="finished" from="SubViewport/VideoStreamPlayer" to="SubViewport" method="_on_video_stream_player_finished"]
+[connection signal="body_entered" from="FigureGoneArea" to="." method="_on_figure_gone_area_body_entered"]

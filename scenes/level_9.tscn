@@ -1,0 +1,557 @@
+[gd_scene load_steps=29 format=3 uid="uid://b4k3vbjf853t6"]
+
+[ext_resource type="Script" path="res://scripts/level_9.gd" id="1_wdxbp"]
+[ext_resource type="PackedScene" uid="uid://kpgel7p5a0dg" path="res://scenes/house.tscn" id="2_bfcvj"]
+[ext_resource type="PackedScene" uid="uid://dtdrsc7avr8r0" path="res://scenes/prefabs/door.scn" id="3_oi306"]
+[ext_resource type="AudioStream" uid="uid://770avmmoy4ma" path="res://sounds/tv-static-7019.mp3" id="4_feju2"]
+[ext_resource type="Script" path="res://scripts/light_flicker.gd" id="4_xkqto"]
+[ext_resource type="Script" path="res://scripts/tv.gd" id="5_3exmg"]
+[ext_resource type="VideoStream" path="res://sounds/static1.ogv" id="6_nf5vt"]
+[ext_resource type="PackedScene" uid="uid://c7ppaea21ygnl" path="res://scenes/prefabs/chair.scn" id="7_uvslw"]
+[ext_resource type="AudioStream" uid="uid://browr2xy8f24m" path="res://sounds/trying-to-open-a-locked-door-104302.mp3" id="8_re4uc"]
+[ext_resource type="AudioStream" uid="uid://cqaa2dveps4xb" path="res://sounds/chair-moving-6238.mp3" id="9_03mcg"]
+[ext_resource type="AudioStream" uid="uid://mis1v6j8v6m5" path="res://sounds/jump-scare_6-28636.mp3" id="10_p02am"]
+[ext_resource type="PackedScene" uid="uid://bph8h1cfm7l2v" path="res://scenes/figure.tscn" id="12_i6hfp"]
+
+[sub_resource type="Environment" id="Environment_i1sk5"]
+background_mode = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
+fog_light_energy = 0.49
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ix5h"]
+size = Vector3(0.408718, 2.58247, 1.28689)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y8b03"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rwvhr"]
+noise = SubResource("FastNoiseLite_y8b03")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lqtpt"]
+resource_local_to_scene = true
+size = Vector2(0.8, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yqg55"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01vlr"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_yqg55")
+albedo_texture_force_srgb = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6g2k"]
+emission_enabled = true
+emission = Color(0, 0.564706, 0.901961, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r78el"]
+material = SubResource("StandardMaterial3D_x6g2k")
+size = Vector2(0.32, 0.57)
+
+[sub_resource type="Animation" id="Animation_esxnm"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.83485, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.21284, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.52969, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_3j5ge"]
+resource_name = "chair_to_ceiling"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2.83485, -0.25, 0, 0.25, 0, 2.835, -0.25, 0, 0.25, 0, 2.83485, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.998, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.21284, -0.25, 0, 0.25, 0, -0.707838, -0.25, 0, 0.25, 0, 0.909881, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 2.6054e-15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.52969, -0.25, 0, 0.25, 0, -1.57254, -0.25, 0, 0.25, 0, -1.86256, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 3.14159, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ttndd"]
+_data = {
+"RESET": SubResource("Animation_esxnm"),
+"chair_to_ceiling": SubResource("Animation_3j5ge")
+}
+
+[sub_resource type="Animation" id="Animation_2d4c3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.05759, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.19369, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.52969, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_enfyi"]
+resource_name = "chair_to_ground"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2.05759, -0.25, 0, 0.25, 0, 1.15592, -0.25, 0, 0.25, 0, 0.131881, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.7, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.175573, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.7, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.19369, -0.25, 0, 0.25, 0, -0.796436, -0.25, 0, 0.25, 0, 0.240605, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.7, 3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1.77636e-15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.7, 3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.52969, -0.25, 0, 0.25, 0, -2.22022, -0.25, 0, 0.25, 0, -2.45125, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.7, 3)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.7, 3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2kvp"]
+_data = {
+"RESET": SubResource("Animation_2d4c3"),
+"chair_to_ground": SubResource("Animation_enfyi")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqilo"]
+size = Vector3(0.201157, 2.43369, 1.93289)
+
+[node name="Level9" type="Node3D"]
+script = ExtResource("1_wdxbp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i1sk5")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8795, 0, 0)
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346042, 1.40089, 0)
+shape = SubResource("BoxShape3D_3ix5h")
+
+[node name="House" parent="." instance=ExtResource("2_bfcvj")]
+
+[node name="BathroomDoor" parent="." instance=ExtResource("3_oi306")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.51396, 0, 1.17482)
+
+[node name="TransportDoor" parent="." instance=ExtResource("3_oi306")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.17595, 0, 0.0131148)
+
+[node name="HiddenDoor" parent="." instance=ExtResource("3_oi306")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.998, 0, 0.0131148)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Main" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001791, 2.40309, 0.00238895)
+light_color = Color(0.513726, 0, 0.0196078, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.3
+shadow_blur = 10.0
+omni_range = 9.0
+omni_attenuation = 1.5
+
+[node name="Kitchen1" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78765, 1.67698, -1.65958)
+visible = false
+light_color = Color(1, 0.835294, 0.756863, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+omni_attenuation = 1.25
+
+[node name="Kitchen2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95919, 1.67698, -1.65958)
+visible = false
+light_color = Color(1, 0.835294, 0.756863, 1)
+light_energy = 0.5
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+omni_attenuation = 1.25
+
+[node name="Hall1" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89691, 1.5131, 0.868085)
+visible = false
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+
+[node name="Hall2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0299, 1.48797, 0.857244)
+light_color = Color(1, 0.835294, 0.756863, 1)
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 10.0
+omni_range = 3.0
+script = ExtResource("4_xkqto")
+texture = SubResource("NoiseTexture2D_rwvhr")
+flickering = true
+
+[node name="Bathroom" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52636, 2.59493, 2.09764)
+visible = false
+light_color = Color(1, 0.654902, 0.482353, 1)
+light_size = 0.25
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+omni_range = 3.0
+
+[node name="TVScreen" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(0.192316, 0, 0.981333, 0, 1, 0, -0.981333, 0, 0.192316, 4.83553, 1.35054, 3.97466)
+visible = false
+light_energy = 0.2
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+spot_range = 10.0
+spot_angle = 75.0
+
+[node name="ComputerScreen" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(-4.36605e-08, -0.211905, -0.97729, 2.10938e-09, 0.97729, -0.211905, 1, -1.13133e-08, -4.2222e-08, -2.71614, 1.12386, 2.95777)
+visible = false
+light_energy = 0.2
+shadow_enabled = true
+shadow_opacity = 0.5
+shadow_blur = 5.0
+spot_angle = 80.0
+
+[node name="Patio" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.345396, 0.938457, 0, -0.938457, -0.345396, 0.142587, 2.86151, 5.2587)
+visible = false
+light_energy = 5.0
+shadow_enabled = true
+spot_angle = 30.0
+
+[node name="TV" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.3708e-08, -0.999923, -0.0123741, 1, -4.37114e-08, -5.55069e-17, -5.40888e-10, -0.0123741, 0.999923, 4.86062, 1.32794, 3.94816)
+visible = false
+mesh = SubResource("PlaneMesh_lqtpt")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_01vlr")
+
+[node name="TVAudio" type="AudioStreamPlayer3D" parent="TV"]
+transform = Transform3D(-4.3708e-08, 1, -5.40888e-10, -0.999924, -4.37114e-08, -0.0123741, -0.0123741, 3.33332e-20, 0.999923, 0, 0, 0)
+stream = ExtResource("4_feju2")
+volume_db = 5.0
+unit_size = 1.0
+max_db = 0.0
+autoplay = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+script = ExtResource("5_3exmg")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stream = ExtResource("6_nf5vt")
+autoplay = true
+
+[node name="Computer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.21644, 0.976296, 0, -0.976296, 0.21644, 0, 0, 0, 1, -2.73564, 1.10408, 2.94387)
+visible = false
+mesh = SubResource("PlaneMesh_r78el")
+
+[node name="Prefabs" type="Node3D" parent="."]
+
+[node name="chair" parent="Prefabs" instance=ExtResource("7_uvslw")]
+transform = Transform3D(0.0410947, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410947, 2.83485, 0, -1.21284)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Prefabs/chair"]
+libraries = {
+"": SubResource("AnimationLibrary_ttndd")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Prefabs/chair"]
+stream = ExtResource("9_03mcg")
+volume_db = 20.0
+unit_size = 1.0
+
+[node name="chair2" parent="Prefabs" instance=ExtResource("7_uvslw")]
+transform = Transform3D(0.0410947, 0, -0.999155, 0, 1, 0, 0.999155, 0, 0.0410947, 2.05759, 0, -1.19369)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Prefabs/chair2"]
+libraries = {
+"": SubResource("AnimationLibrary_s2kvp")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Prefabs/chair2"]
+stream = ExtResource("9_03mcg")
+volume_db = 20.0
+unit_size = 1.0
+
+[node name="DoorHandleSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4693, 1.14109, 0)
+stream = ExtResource("8_re4uc")
+volume_db = 10.0
+unit_size = 1.0
+
+[node name="DoorHandleArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12989, 0, 0)
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorHandleArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359321, 1.24123, 0)
+shape = SubResource("BoxShape3D_iqilo")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_p02am")
+
+[node name="figure" parent="." instance=ExtResource("12_i6hfp")]
+transform = Transform3D(-1.23999, 0, -0.39042, 0, 1.3, 0, 0.39042, 0, -1.23999, 3.98997, 0, 4.70825)
+
+[connection signal="finished" from="SubViewport/VideoStreamPlayer" to="SubViewport" method="_on_video_stream_player_finished"]
+[connection signal="animation_finished" from="Prefabs/chair/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="DoorHandleSound" to="." method="_on_door_handle_sound_finished"]
+[connection signal="body_entered" from="DoorHandleArea" to="." method="_on_door_handle_area_body_entered"]

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/key-by-key-mechanical-keyboard-14389.mp3-bc5b
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

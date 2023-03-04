@@ -42,6 +42,10 @@ func play_closed_sound():
 func play_locked_sound():
 	$DoorLocked.play()
 
+func creak_open():
+	$AnimationPlayer.play("open")
+	$AudioStreamPlayer3D.play()
+
 func _on_area_3d_body_entered(body):
 	if body is CharacterBody3D: in_range = true
 
