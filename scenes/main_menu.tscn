@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://dd35ks7uo5876"]
+
+[ext_resource type="PackedScene" uid="uid://brmcn45gdp2q3" path="res://scenes/xr_player.tscn" id="1_58ler"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_saf2u"]
+
+[sub_resource type="Environment" id="Environment_t1h0k"]
+background_mode = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0.145098, 0.160784, 0.184314, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76uhc"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f5stk"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eotas"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s047t"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_eotas")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3h0wq"]
+material = SubResource("StandardMaterial3D_s047t")
+size = Vector2(3, 2)
+
+[sub_resource type="Theme" id="Theme_160ao"]
+default_font_size = 75
+
+[sub_resource type="Theme" id="Theme_yqury"]
+default_font_size = 75
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_saf2u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t1h0k")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_76uhc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("BoxMesh_f5stk")
+
+[node name="XRPlayer" parent="." instance=ExtResource("1_58ler")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, -2)
+mesh = SubResource("PlaneMesh_3h0wq")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 0
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -121.0
+offset_right = 121.0
+offset_bottom = 145.0
+grow_horizontal = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_160ao")
+text = "Start"
+
+[node name="Button2" type="Button" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -145.0
+offset_right = 93.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_yqury")
+text = "Exit"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]

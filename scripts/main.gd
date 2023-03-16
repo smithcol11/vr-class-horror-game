@@ -53,6 +53,15 @@ func _on_level_scene_change():
 		
 		add_child(next_level)
 		next_level.connect("scene_change", _on_level_scene_change)
+		if level == "res://scenes/level_10.tscn": next_level.connect("end_game", _on_end_game)
 		previous_level.queue_free()
 		current_level.set_hidden_door(true)
 		changing_scene = false
+
+func _on_end_game():
+	await get_tree().create_timer(0.1).connect("timeout", fade_music)
+	
+func fade_music():
+	if singleton.background_music.volume_db <= -20: get_tree().quit()
+	await get_tree().create_timer(0.1).connect("timeout", fade_music)
+	singleton.background_music.volume_db -= 0.05

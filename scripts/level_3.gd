@@ -12,7 +12,7 @@ func _physics_process(delta):
 	pass
 
 func _on_door_bang_area_body_entered(body):
-	if !sound_played:
+	if body is CharacterBody3D and !sound_played:
 		sound_played = true
 		
 		background_music.stop()
@@ -22,7 +22,8 @@ func _on_door_bang_area_body_entered(body):
 		$DoorBang.play()
 
 func _on_tv_off_area_body_entered(body):
-	$TV/TVAudio.stop()
-	$Lights/TVScreen.light_energy = 0
-	$SubViewport/VideoStreamPlayer.stop()
+	if body is CharacterBody3D:
+		$TV/TVAudio.stop()
+		$Lights/TVScreen.light_energy = 0
+		$SubViewport/VideoStreamPlayer.stop()
 

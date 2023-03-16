@@ -42,7 +42,15 @@ func play_closed_sound():
 func play_locked_sound():
 	$DoorLocked.play()
 
+func creak_closed():
+	$DoorBody/CollisionShape3D.set_deferred("disabled", false)
+	$DoorBody/CollisionShape3D2.set_deferred("disabled", false)
+	$AnimationPlayer.play_backwards("open")
+	$AudioStreamPlayer3D.play()
+
 func creak_open():
+	$DoorBody/CollisionShape3D.set_deferred("disabled", true)
+	$DoorBody/CollisionShape3D2.set_deferred("disabled", true)
 	$AnimationPlayer.play("open")
 	$AudioStreamPlayer3D.play()
 

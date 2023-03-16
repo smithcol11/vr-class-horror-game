@@ -35,7 +35,7 @@ material = SubResource("StandardMaterial3D_6ew2u")
 size = Vector2(0.32, 0.57)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ormjf"]
-size = Vector3(0.27537, 1.04584, 1.94945)
+size = Vector3(0.27537, 1.93867, 1.94945)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bi3g"]
 size = Vector3(1.6747, 1.1337, 0.284618)
@@ -184,7 +184,7 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorBangArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87529, 0.56382, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87529, 1.04085, 0)
 shape = SubResource("BoxShape3D_ormjf")
 
 [node name="DoorBang" type="AudioStreamPlayer3D" parent="."]

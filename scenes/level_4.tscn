@@ -211,7 +211,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253286, 0)
 shape = SubResource("BoxShape3D_27u4u")
 
 [node name="UnlockDoorArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44031, 1.04915, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78904, 1.04915, 0)
 collision_layer = 6
 collision_mask = 6
 
@@ -222,8 +222,8 @@ shape = SubResource("BoxShape3D_27u4u")
 [node name="DoorBangs" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.53551, 1.02422, 0.894876)
 stream = ExtResource("9_sw4sd")
-volume_db = 50.0
-unit_size = 1.5
+volume_db = 20.0
+unit_size = 0.5
 max_db = 6.0
 
 [connection signal="finished" from="SubViewport/VideoStreamPlayer" to="SubViewport" method="_on_video_stream_player_finished"]
