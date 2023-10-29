@@ -19,3 +19,7 @@ mono_crash.*.json
 # Should be fixed from recent commit, keeping just in case
 models/*.png
 models/*.png.import
+
+# Game exe and zipped files
+vr-class-horror-game.exe
+*.7z*
